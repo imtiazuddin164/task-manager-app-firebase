@@ -44,16 +44,35 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task_manager_app/providers/task_provider.dart';
+import 'package:task_manager_app/services/notification_service.dart';
 
 import 'firebase_options.dart';
 import 'providers/auth_provider.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/tasks/task_list_screen.dart';
 
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//
+//   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+//
+//   runApp(
+//     MultiProvider(
+//       providers: [
+//         ChangeNotifierProvider(create: (_) => AuthProvider()),
+//         ChangeNotifierProvider(create: (_) => TaskProvider()),
+//       ],
+//       child: const MyApp(),
+//     ),
+//   );
+// }
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  await NotificationService().initialize();
 
   runApp(
     MultiProvider(
